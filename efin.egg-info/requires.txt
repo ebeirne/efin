@@ -1,0 +1,9 @@
+yfinance
+statsmodels
+prophet
+click
+requests_cache
+matplotlib
+numpy
+pandas
+scikit-learn
