@@ -82,32 +82,44 @@ scikit-learn
 
 import efin
 
+
 #Calculate DCF for AAPL over a 5-year period with a 10% discount rate and 5% growth rate.
+
 dcf_result = efin.dcf("AAPL", years=5, discount_rate=0.10, growth_rate=0.05, terminal_growth_rate=0.02)
+
 print("Total DCF Value:", dcf_result["total_dcf_value"])
 
 # Dividend Discount Model (DDM)
 
 import efin
 
+
 #Estimate the stock price of KO using a 3% dividend growth rate and a 10% discount rate.
+
 ddm_price = efin.dividend_discount_model("KO", growth_rate=0.03, discount_rate=0.1)
+
 print("DDM Price for KO:", ddm_price)
 
 # Comparable Company Analysis
 
 import efin
 
+
 #Compare AAPL against MSFT and GOOGL using the trailing P/E multiple.
+
 result = efin.comparable_company_analysis("AAPL", ["MSFT", "GOOGL"], multiple="trailingPE")
+
 print(result)
 
 # Residual Income Model (RIM)
 
 import efin
 
+
 #Estimate intrinsic value for AAPL using a 10% cost of equity, 5% growth rate, over 5 periods.
+
 rim_value = efin.residual_income_model("AAPL", cost_of_equity=0.10, growth_rate=0.05, forecast_period=5)
+
 print("Residual Income Value:", rim_value)
 
 # Forecasting
@@ -116,62 +128,90 @@ print("Residual Income Value:", rim_value)
 
 import efin
 
+
 #Forecast AAPL prices for the next 30 days using a linear regression approach.
+
 forecast_df = efin.forecast("AAPL", forecast_period=30, start_date="2010-01-01")
+
 print(forecast_df)
 
 # Auto ARIMA Grid Forecast
 
 import efin
 
+
 #Forecast AAPL prices for the next 5 days using a grid search over ARIMA parameters.
+
 forecast_df, best_order, best_aic = efin.auto_arima_grid_forecast("AAPL", forecast_period=5, start_date="2010-01-01")
+
 print("Best ARIMA order:", best_order, "with AIC:", best_aic)
+
 print(forecast_df)
 
 # Risk Metrics
 
 import efin
 
+
 #Calculate the volatility and Sharpe ratio for AAPL.
+
 volatility = efin.calculate_volatility("AAPL", start_date="2020-01-01")
+
 sharpe = efin.sharpe_ratio("AAPL", risk_free_rate=0.01, start_date="2020-01-01")
+
 print("Volatility:", volatility)
+
 print("Sharpe Ratio:", sharpe)
 
 # Portfolio Analysis
 
 import efin
 
+
 #Download adjusted close prices for AAPL and MSFT.
+
 prices = efin.download_adj_close(["AAPL", "MSFT"], start_date="2020-01-01")
+
 print(prices.head())
 
 #Compute a basic equal-weighted portfolio allocation.
+
 returns = prices.pct_change().dropna()
+
 weights = efin.markowitz_portfolio(returns)
+
 print("Portfolio Weights:", weights)
 
 # Data Caching
 
 import efin
 
+
 #Initialize caching for 1 hour to speed up repeated data retrieval.
+
 efin.initialize_cache(expire_after=3600)
 
 # Visualization
 
 import efin
+
+
 from efin.visualization import plot_forecast
+
 import pandas as pd
+
 import numpy as np
 
 #Generate sample historical data
+
 dates = pd.date_range("2020-01-01", periods=50)
+
 history = pd.Series(np.random.randn(50).cumsum(), index=dates)
 
 #Generate sample forecast data for 10 days
+
 forecast_dates = pd.date_range("2020-02-20", periods=10)
+
 forecast_values = pd.Series(np.random.randn(10).cumsum(), index=forecast_dates)
 
 plot_forecast(history, forecast_values, title="Historical vs Forecast")
