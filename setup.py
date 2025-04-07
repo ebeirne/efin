@@ -8,7 +8,7 @@ setup(
     description="A comprehensive financial analysis and forecasting library",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/ebeirne/efin",  # Replace with your repository URL
+    url="https://github.com/ebeirne/efin", 
     packages=find_packages(),
     install_requires=[
         "yfinance",           # Financial data retrieval
